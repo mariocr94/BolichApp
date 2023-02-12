@@ -56,7 +56,14 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                </Menu>
             </div>
          );
-      return <div className="text-main-4">Welcome</div>;
+      return (
+         <Link href="/">
+            <div className="text-main-4 md:flex md:flex-col md:items-center md:justify-center">
+               <BsHouseDoorFill className="h-8 w-8 md:h-6 md:w-6" />
+               <h2 className="hidden md:inline">Home</h2>
+            </div>
+         </Link>
+      );
    };
    // if (!user) return;
 

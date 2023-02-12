@@ -9,6 +9,8 @@ export interface GamesPageProps {
    games: IGames[];
 }
 
+const PAGE_SIZE = 5;
+
 const GamesPage = ({ games: serverGames }: GamesPageProps) => {
    const [score, setScore] = useState('');
 
@@ -22,9 +24,21 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
       setEndIndex,
       numberOfRecords,
       averageScore,
-   } = useGames(serverGames);
+   } = useGames(serverGames, PAGE_SIZE);
+
    const handleScoreChange = (e: React.FormEvent<HTMLInputElement>) => {
       setScore(e.currentTarget.value);
+   };
+
+   const handleKeyDown = (event: any) => {
+      if (event.key === 'Enter') {
+         if (parseInt(score) > 300) {
+            alert('It is not possible to score more than 300.');
+            return;
+         }
+         postGame(score);
+         setScore('');
+      }
    };
 
    return (

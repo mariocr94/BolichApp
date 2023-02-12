@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
    }
    const numberId = parseInt(id as string);
    const response = await supabase.from(TABLES.GAMES).delete().eq('id', numberId);
-   console.log(response);
+
    if (response.status !== 204) res.status(500).send(response);
 
    res.status(204).send(response.data);
