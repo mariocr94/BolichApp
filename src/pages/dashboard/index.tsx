@@ -5,7 +5,6 @@ import { IGames } from '@models/games';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import moment from 'moment';
-import Image from 'next/image';
 import React, { useState } from 'react';
 
 interface DashboardProps {
@@ -67,8 +66,9 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
    return (
       <div className="container mx-auto flex h-to-fit flex-col items-center gap-4 p-4">
          <h1>Current Average: {averageScore}</h1>
+
          <h1>All previous Scores:</h1>
-         <div className="rounded-xl border-2 border-main-4">
+         <div className="rounded-xl border-2 border-main-3">
             <table className="w-96 divide-y divide-x">
                <thead>
                   <tr className="">
@@ -92,14 +92,7 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
                </tbody>
             </table>
          </div>
-         <Image
-            src="/images/bowling.jpeg"
-            alt="bowling"
-            width={200}
-            height={200}
-            className="rounded-lg shadow-lg"
-            priority
-         />
+
          <div className="mt-4 flex flex-col items-center gap-2 md:flex-row">
             <h1>New Score: </h1>
             <input
