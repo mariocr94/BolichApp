@@ -1,4 +1,4 @@
-export const SCORES = {
-   POST: '/api/postScores',
-   DELETE: (id: string) => `/api/deleteScores/${id}`,
+export const GAMES = {
+   POST: '/api/postGame',
+   DELETE: (id: string) => `/api/deleteGame/${id}`,
 };

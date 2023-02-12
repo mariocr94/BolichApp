@@ -1,7 +1,7 @@
-import { SCORES } from '@common/constants/endpoints';
+import { GAMES } from '@common/constants/endpoints';
 import { TABLES } from '@common/constants/tables';
 import { MONTH_DAY_YEAR } from '@common/constants/timeFormat';
-import { IScore } from '@models/games';
+import { IGames } from '@models/games';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import moment from 'moment';
@@ -10,58 +10,58 @@ import React, { useState } from 'react';
 
 interface DashboardProps {
    session: any;
-   scores: IScore[];
+   games: IGames[];
 }
-const Dashboard = ({ session, scores: serverScores }: DashboardProps) => {
-   const [score, setScore] = useState('');
-   const [scores, setScores] = useState(serverScores);
+const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
+   const [game, setGame] = useState('');
+   const [games, setGames] = useState(serverGames);
 
    const supabaseClient = useSupabaseClient();
    const user = useUser();
 
    const handleKeyDown = (event: any) => {
       if (event.key === 'Enter') {
-         postScore(score);
+         postGame(game);
       }
    };
 
-   const postScore = async (score: string) => {
-      const scorebody = { score, userId: user?.id };
-      await fetch(SCORES.POST, {
+   const postGame = async (game: string) => {
+      const gameBody = { game, userId: user?.id };
+      await fetch(GAMES.POST, {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
          },
-         body: JSON.stringify(scorebody),
+         body: JSON.stringify(gameBody),
       });
 
-      refetchScores();
+      refetchGames();
    };
 
-   const refetchScores = async () => {
-      const { data: scores } = await supabaseClient.from(TABLES.GAMES).select('*');
-      setScores(scores);
+   const refetchGames = async () => {
+      const { data: games } = await supabaseClient.from(TABLES.GAMES).select('*');
+      setGames(games);
    };
 
-   const handleScoreChange = (e: React.FormEvent<HTMLInputElement>) => {
-      setScore(e.currentTarget.value);
+   const handleGameChange = (e: React.FormEvent<HTMLInputElement>) => {
+      setGame(e.currentTarget.value);
    };
 
-   const handleDeleteClick = async (scoreId: string) => {
-      await fetch(SCORES.DELETE(scoreId), {
+   const handleDeleteClick = async (gameId: string) => {
+      await fetch(GAMES.DELETE(gameId), {
          method: 'DELETE',
          headers: {
             'Content-Type': 'application/json',
          },
       });
 
-      refetchScores();
+      refetchGames();
    };
 
    const averageScore = (
-      scores.reduce((sum, score) => {
-         return (sum += score.score);
-      }, 0) / scores.length
+      games.reduce((sum, game) => {
+         return (sum += game.score);
+      }, 0) / games.length
    ).toFixed(2);
 
    return (
@@ -78,13 +78,13 @@ const Dashboard = ({ session, scores: serverScores }: DashboardProps) => {
                   </tr>
                </thead>
                <tbody className="rounded-lg">
-                  {scores.map((score) => {
+                  {games.map((game) => {
                      return (
-                        <tr key={score.id}>
-                           <td>{moment(score.inserted_at).format(MONTH_DAY_YEAR)}</td>
-                           <td>{score.score}</td>
+                        <tr key={game.id}>
+                           <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
+                           <td>{game.score}</td>
                            <td className="text-red-500">
-                              <button onClick={() => handleDeleteClick(score.id)}>X</button>
+                              <button onClick={() => handleDeleteClick(game.id)}>X</button>
                            </td>
                         </tr>
                      );
@@ -106,8 +106,8 @@ const Dashboard = ({ session, scores: serverScores }: DashboardProps) => {
                className="rounded-lg py-2 px-4 shadow-md"
                type="number"
                placeholder="Add your score"
-               value={score}
-               onChange={handleScoreChange}
+               value={game}
+               onChange={handleGameChange}
                onKeyDown={handleKeyDown}
             />
          </div>
@@ -130,7 +130,7 @@ export async function getServerSideProps(ctx) {
          },
       };
 
-   const { data: scores } = await supabase.from(TABLES.GAMES).select('*');
+   const { data: games } = await supabase.from(TABLES.GAMES).select('*');
 
-   return { props: { session, scores } };
+   return { props: { session, games } };
 }

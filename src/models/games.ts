@@ -1,4 +1,4 @@
-export interface IScore {
+export interface IGames {
    id: string;
    user_id: string;
    score: number;
