@@ -25,12 +25,18 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                <ul className="flex text-main-4">
                   <li className="mx-2">
                      <Link href={PAGES.DASHBOARD}>
-                        <BsHouseDoorFill className="h-8 w-8" />
+                        <div className="md:flex md:flex-col md:items-center md:justify-center">
+                           <BsHouseDoorFill className="h-8 w-8 md:h-6 md:w-6" />
+                           <h2 className="hidden md:inline">Home</h2>
+                        </div>
                      </Link>
                   </li>
                   <li className="mx-2">
                      <Link href={PAGES.GAMES}>
-                        <BsClipboardData className="h-8 w-8" />
+                        <div className="md:flex md:flex-col md:items-center md:justify-center">
+                           <BsClipboardData className="h-8 w-8 md:h-6 md:w-6" />
+                           <h2 className="hidden md:inline">Games</h2>
+                        </div>
                      </Link>
                   </li>
                </ul>
