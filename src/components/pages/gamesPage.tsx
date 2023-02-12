@@ -1,9 +1,7 @@
-import { GAMES } from '@common/constants/endpoints';
-import { TABLES } from '@common/constants/tables';
 import { MONTH_DAY_YEAR } from '@common/constants/timeFormat';
 import Pagination from '@components/common/Pagination';
+import useGames from '@hooks/useGames';
 import { IGames } from '@models/games';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import moment from 'moment';
 import { useState } from 'react';
 
@@ -11,69 +9,23 @@ export interface GamesPageProps {
    games: IGames[];
 }
 
-const PAGE_SIZE = 5;
 const GamesPage = ({ games: serverGames }: GamesPageProps) => {
    const [score, setScore] = useState('');
-   const [games, setGames] = useState(serverGames);
-   const [numberOfRecords, setNumberOfRecords] = useState(serverGames.length);
-   const [startIndex, setStartIndex] = useState(0);
-   const [endIndex, setEndIndex] = useState(PAGE_SIZE - 1);
 
-   const supabaseClient = useSupabaseClient();
-   const user = useUser();
-
-   const handleKeyDown = (event: any) => {
-      if (event.key === 'Enter') {
-         if (parseInt(score) > 300) {
-            alert('It is not possible to score more than 300.');
-            return;
-         }
-         postGame(score);
-      }
-   };
-
-   const postGame = async (score: string) => {
-      const gameBody = { score, userId: user?.id };
-      await fetch(GAMES.POST, {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify(gameBody),
-      });
-
-      refetchGames();
-   };
-
-   const refetchGames = async () => {
-      const { data: games } = await supabaseClient.from(TABLES.GAMES).select('*');
-      setGames(games);
-      setNumberOfRecords(games.length);
-   };
-
+   let {
+      postGame,
+      deleteGame,
+      games,
+      startIndex,
+      setStartIndex,
+      endIndex,
+      setEndIndex,
+      numberOfRecords,
+      averageScore,
+   } = useGames(serverGames);
    const handleScoreChange = (e: React.FormEvent<HTMLInputElement>) => {
       setScore(e.currentTarget.value);
    };
-
-   const handleDeleteClick = async (gameId: string) => {
-      await fetch(GAMES.DELETE(gameId), {
-         method: 'DELETE',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
-
-      refetchGames();
-   };
-
-   const averageScore =
-      games.length > 0
-         ? (
-              games.reduce((sum, game) => {
-                 return (sum += game.score);
-              }, 0) / games.length
-           ).toFixed(2)
-         : '';
 
    return (
       <div className="container mx-auto flex h-to-fit flex-col items-center gap-4 p-4">
@@ -96,7 +48,7 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
                            <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
                            <td>{game.score}</td>
                            <td className="text-red-500">
-                              <button onClick={() => handleDeleteClick(game.id)}>X</button>
+                              <button onClick={() => deleteGame(game.id)}>X</button>
                            </td>
                         </tr>
                      );
