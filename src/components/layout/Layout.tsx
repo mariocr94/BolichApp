@@ -1,6 +1,7 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 import Head from 'next/head';
 import { ReactNode } from 'react';
+import Footer from './Footer';
 import Header from './Header';
 
 type Props = {
@@ -16,7 +17,8 @@ const Layout = ({ children, supabaseClient }: Props) => (
          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header supabaseClient={supabaseClient} />
-      <main>{children}</main>
+      <main className="container mx-auto h-to-fit p-4">{children}</main>
+      <Footer />
    </div>
 );
 
