@@ -7,15 +7,15 @@
       @apply bg-gray-200;
    }
    h1 {
-      @apply font-mono text-lg font-bold tracking-wide text-purple-700;
+      @apply font-mono text-lg font-bold tracking-wide text-main-2;
    }
    td {
-      @apply py-2 px-4 text-center;
+      @apply px-4 py-2 text-center;
    }
 }
 
 .smallButton {
-   @apply rounded-full py-2 px-4 hover:bg-slate-400;
+   @apply rounded-full px-4 py-2 hover:bg-slate-400;
 }
 
 .smallIconButton {
