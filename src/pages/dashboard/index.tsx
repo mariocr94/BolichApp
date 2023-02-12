@@ -1,6 +1,7 @@
 import { GAMES } from '@common/constants/endpoints';
 import { TABLES } from '@common/constants/tables';
 import { MONTH_DAY_YEAR } from '@common/constants/timeFormat';
+import Pagination from '@components/common/Pagination';
 import { IGames } from '@models/games';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
@@ -11,21 +12,31 @@ interface DashboardProps {
    session: any;
    games: IGames[];
 }
+
+const PAGE_SIZE = 5;
+
 const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
-   const [game, setGame] = useState('');
+   const [score, setScore] = useState('');
    const [games, setGames] = useState(serverGames);
+   const [numberOfRecords, setNumberOfRecords] = useState(serverGames.length);
+   const [startIndex, setStartIndex] = useState(0);
+   const [endIndex, setEndIndex] = useState(PAGE_SIZE - 1);
 
    const supabaseClient = useSupabaseClient();
    const user = useUser();
 
    const handleKeyDown = (event: any) => {
       if (event.key === 'Enter') {
-         postGame(game);
+         if (parseInt(score) > 300) {
+            alert('It is not possible to score more than 300.');
+            return;
+         }
+         postGame(score);
       }
    };
 
-   const postGame = async (game: string) => {
-      const gameBody = { game, userId: user?.id };
+   const postGame = async (score: string) => {
+      const gameBody = { score, userId: user?.id };
       await fetch(GAMES.POST, {
          method: 'POST',
          headers: {
@@ -40,10 +51,11 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
    const refetchGames = async () => {
       const { data: games } = await supabaseClient.from(TABLES.GAMES).select('*');
       setGames(games);
+      setNumberOfRecords(games.length);
    };
 
-   const handleGameChange = (e: React.FormEvent<HTMLInputElement>) => {
-      setGame(e.currentTarget.value);
+   const handleScoreChange = (e: React.FormEvent<HTMLInputElement>) => {
+      setScore(e.currentTarget.value);
    };
 
    const handleDeleteClick = async (gameId: string) => {
@@ -57,11 +69,14 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
       refetchGames();
    };
 
-   const averageScore = (
-      games.reduce((sum, game) => {
-         return (sum += game.score);
-      }, 0) / games.length
-   ).toFixed(2);
+   const averageScore =
+      games.length > 0
+         ? (
+              games.reduce((sum, game) => {
+                 return (sum += game.score);
+              }, 0) / games.length
+           ).toFixed(2)
+         : '';
 
    return (
       <div className="container mx-auto flex h-to-fit flex-col items-center gap-4 p-4">
@@ -78,7 +93,7 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
                   </tr>
                </thead>
                <tbody className="rounded-lg">
-                  {games.map((game) => {
+                  {games.slice(startIndex, endIndex + 1).map((game) => {
                      return (
                         <tr key={game.id}>
                            <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
@@ -92,6 +107,12 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
                </tbody>
             </table>
          </div>
+         <Pagination
+            numberOfRecords={numberOfRecords}
+            setStartIndex={setStartIndex}
+            setEndIndex={setEndIndex}
+            pageSize={PAGE_SIZE}
+         />
 
          <div className="mt-4 flex flex-col items-center gap-2 md:flex-row">
             <h1>New Score: </h1>
@@ -99,8 +120,8 @@ const Dashboard = ({ session, games: serverGames }: DashboardProps) => {
                className="rounded-lg py-2 px-4 shadow-md"
                type="number"
                placeholder="Add your score"
-               value={game}
-               onChange={handleGameChange}
+               value={score}
+               onChange={handleScoreChange}
                onKeyDown={handleKeyDown}
             />
          </div>
