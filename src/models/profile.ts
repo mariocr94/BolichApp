@@ -1,14 +1,14 @@
 export interface UserProfile {
    id: string;
-   updated_at: string;
+   updated_at: string | Date;
    username: string;
    full_name: string;
    avatar_url: string;
    right_handed: boolean;
    one_handed: boolean;
    bowling_profile: BowlingProfile;
-   kmh: number;
-   speed_km: boolean;
+   speed: number;
+   isKmh: boolean;
    rpm: number;
 }
 
