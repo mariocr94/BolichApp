@@ -16,6 +16,7 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
 
    let {
       postGame,
+      isPosting,
       deleteGame,
       games,
       startIndex,
@@ -79,14 +80,18 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
 
          <div className="mt-4 flex flex-col items-center gap-2 md:flex-row">
             <h1>New Score: </h1>
-            <input
-               className="rounded-lg px-4 py-2 shadow-md"
-               type="number"
-               placeholder="Add your score"
-               value={score}
-               onChange={handleScoreChange}
-               onKeyDown={handleKeyDown}
-            />
+            {isPosting ? (
+               <h2>Adding Score...</h2>
+            ) : (
+               <input
+                  className="appearance-none rounded-lg px-4 py-2 shadow-md focus:outline-main-3"
+                  type="number"
+                  placeholder="Add your score"
+                  value={score}
+                  onChange={handleScoreChange}
+                  onKeyDown={handleKeyDown}
+               />
+            )}
          </div>
       </div>
    );

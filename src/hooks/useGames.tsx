@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
    const [games, setGames] = useState(serverGames);
+   const [isPosting, setIsPosting] = useState(false);
+   const [isDeleting, setIsDeleting] = useState(false);
    const [numberOfRecords, setNumberOfRecords] = useState(serverGames.length);
    const [startIndex, setStartIndex] = useState(0);
    const [endIndex, setEndIndex] = useState(PAGE_SIZE - 1);
@@ -13,6 +15,7 @@ const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
    const user = useUser();
 
    const postGame = async (score: string) => {
+      setIsPosting(true);
       const gameBody = { score, userId: user?.id };
       await fetch(GAMES.POST, {
          method: 'POST',
@@ -23,9 +26,11 @@ const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
       });
 
       refetchGames();
+      setIsPosting(false);
    };
 
    const deleteGame = async (gameId: string) => {
+      setIsDeleting(true);
       await fetch(GAMES.DELETE(gameId), {
          method: 'DELETE',
          headers: {
@@ -34,6 +39,7 @@ const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
       });
 
       refetchGames();
+      setIsDeleting(false);
    };
 
    const refetchGames = async () => {
@@ -53,7 +59,9 @@ const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
 
    return {
       postGame,
+      isPosting,
       deleteGame,
+      isDeleting,
       games,
       startIndex,
       setStartIndex,
