@@ -1,5 +1,5 @@
 import { TABLES } from '@common/constants/tables';
-import GamesPage, { GamesPageProps } from '@components/pages/gamesPage';
+import GamesPage, { GamesPageProps } from '@components/pages/GamesPage';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 const Games = ({ games }: GamesPageProps) => {
