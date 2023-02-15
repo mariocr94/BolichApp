@@ -13,11 +13,13 @@
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.5.0",
+    "joi": "^17.7.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.1",
     "react-icons": "^4.7.1",
     "react-use-pagination": "^2.0.1"
   },

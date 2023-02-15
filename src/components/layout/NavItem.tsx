@@ -8,8 +8,6 @@ export interface NavItemProps {
 }
 
 const NavItem = ({ link, label, children, route }: NavItemProps) => {
-   console.log(route);
-   console.log(link);
    return (
       <li className={`mx-2 hover:text-main-4 ${route == link && 'text-main-4'}`}>
          <Link href={link}>

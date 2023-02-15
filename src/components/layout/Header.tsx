@@ -41,18 +41,18 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                </ul>
                <Menu>
                   <MenuHandler>
-                     <Button className="rounded-full p-2 shadow-none">
+                     <Button className="rounded-full bg-transparent p-2 shadow-none hover:shadow-none">
                         <BsList className="h-8 w-8 cursor-pointer rounded-full fill-main-1" />
                      </Button>
                   </MenuHandler>
                   <MenuList className="w-32 px-2 py-0">
                      <MenuItem onClick={handleProfileClick} className="hover:bg-main-4">
-                        <div className="flex gap-2 border-b py-2 ">
+                        <div className="flex items-center gap-2 border-b py-2">
                            <BsPersonFill className="h-6 w-6 fill-main-2" /> Profile
                         </div>
                      </MenuItem>
                      <MenuItem onClick={handleLogoutClick} className="hover:bg-main-4">
-                        <div className="flex gap-2 py-2 ">
+                        <div className="flex items-center gap-2 py-2">
                            <BsPower className="h-6 w-6 fill-main-2" /> Logout
                         </div>
                      </MenuItem>

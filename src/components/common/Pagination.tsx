@@ -52,6 +52,7 @@ const Pagination = ({
          </Button>
          <PageButtons totalPages={totalPages} currentPage={currentPage} setPage={setPage} />
          <Button
+            variant="filled"
             className={`mr-2 ${nextEnabled ? 'smallIconButton' : 'disabledSmallIconButton'}`}
             onClick={() => {
                setNextPage();
