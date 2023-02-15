@@ -4,41 +4,40 @@ import { useUser } from '@supabase/auth-helpers-react';
 import { SupabaseClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BsClipboardData, BsHouseDoorFill, BsList, BsPower } from 'react-icons/bs';
+import { BsClipboardData, BsHouseDoorFill, BsList, BsPersonFill, BsPower } from 'react-icons/bs';
+import NavItem from './NavItem';
 
 interface HeaderProps {
    supabaseClient: SupabaseClient;
 }
 const Header = ({ supabaseClient }: HeaderProps) => {
-   const router = useRouter();
    const user = useUser();
+   const router = useRouter();
+   const route = router.pathname;
 
    const handleLogoutClick = async () => {
       await supabaseClient.auth.signOut();
       router.push('/');
    };
 
+   const handleProfileClick = async () => {
+      router.push('/profile');
+   };
+
    const renderUserOptions = () => {
       if (user)
          return (
             <div className="flex w-full items-center justify-between">
-               <ul className="flex text-main-4">
-                  <li className="mx-2">
-                     <Link href={PAGES.DASHBOARD}>
-                        <div className="md:flex md:flex-col md:items-center md:justify-center">
-                           <BsHouseDoorFill className="h-8 w-8 md:h-6 md:w-6" />
-                           <h2 className="hidden md:inline">Home</h2>
-                        </div>
-                     </Link>
-                  </li>
-                  <li className="mx-2">
-                     <Link href={PAGES.GAMES}>
-                        <div className="md:flex md:flex-col md:items-center md:justify-center">
-                           <BsClipboardData className="h-8 w-8 md:h-6 md:w-6" />
-                           <h2 className="hidden md:inline">Games</h2>
-                        </div>
-                     </Link>
-                  </li>
+               <ul className="flex text-main-3">
+                  <NavItem link={PAGES.DASHBOARD} label="Home" route={route}>
+                     <BsHouseDoorFill className="h-8 w-8 md:h-6 md:w-6" />
+                  </NavItem>
+                  <NavItem link={PAGES.PROFILE} label="Profile" route={route}>
+                     <BsPersonFill className="h-8 w-8 md:h-6 md:w-6" />
+                  </NavItem>
+                  <NavItem link={PAGES.GAMES} label="Games" route={route}>
+                     <BsClipboardData className="h-8 w-8 md:h-6 md:w-6" />
+                  </NavItem>
                </ul>
                <Menu>
                   <MenuHandler>
@@ -46,10 +45,15 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                         <BsList className="h-8 w-8 cursor-pointer rounded-full fill-main-1" />
                      </Button>
                   </MenuHandler>
-                  <MenuList>
-                     <MenuItem onClick={handleLogoutClick}>
-                        <div className="flex gap-2">
-                           <BsPower className="h-6 w-6 fill-gray-900" /> Logout
+                  <MenuList className="w-32 px-2 py-0">
+                     <MenuItem onClick={handleProfileClick} className="hover:bg-main-4">
+                        <div className="flex gap-2 border-b py-2 ">
+                           <BsPersonFill className="h-6 w-6 fill-main-2" /> Profile
+                        </div>
+                     </MenuItem>
+                     <MenuItem onClick={handleLogoutClick} className="hover:bg-main-4">
+                        <div className="flex gap-2 py-2 ">
+                           <BsPower className="h-6 w-6 fill-main-2" /> Logout
                         </div>
                      </MenuItem>
                   </MenuList>
