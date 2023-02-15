@@ -1,17 +1,19 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import { BsFacebook } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { signInWithFacebook, signInWithGoogle } from 'utils/signIn';
 
 const LoginPage = () => {
+   const { t } = useTranslation('common');
    const supabaseClient = useSupabaseClient();
 
    return (
       <div className="flex h-full flex-col items-center justify-around gap-4">
-         <h1 className="code font-mono text-xl">
+         <h1 className="font-mono code text-xl">
             <span className="text-lg font-bold tracking-wide text-purple-700">
-               Welcome to Bowling World
+               {t('mainTitle')}
             </span>
          </h1>
          <Image
@@ -29,7 +31,7 @@ const LoginPage = () => {
                }}
             >
                <div className="flex items-center justify-center gap-3 ">
-                  <BsFacebook className="h-5 w-5" /> Continue with Facebook
+                  <BsFacebook className="h-5 w-5" /> {t('login.facebook')}
                </div>
             </button>
             <button
@@ -39,7 +41,7 @@ const LoginPage = () => {
                }}
             >
                <div className="flex items-center justify-center gap-3">
-                  <FcGoogle className="h-5 w-5" /> Continue with Google
+                  <FcGoogle className="h-5 w-5" /> {t('login.google')}
                </div>
             </button>
          </div>

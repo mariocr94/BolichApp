@@ -1,5 +1,5 @@
 import { PAGES } from '@common/constants/pages';
-import LoginPage from '@components/pages/loginPage';
+import LoginPage from '@components/pages/LoginPage';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 const HomePage = () => {

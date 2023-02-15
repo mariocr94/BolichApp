@@ -1,0 +1,13 @@
+{
+   "profile": "Profile",
+   "description": "Update your personal details here.",
+   "username": "Username",
+   "fullName": "Full name",
+   "rightHanded": "Right handed",
+   "leftHanded": "Left handed",
+   "oneHanded": "One handed",
+   "twoHanded": "Two handed",
+   "speed": "Speed",
+   "cancel": "Cancel",
+   "save": "Save"
+}

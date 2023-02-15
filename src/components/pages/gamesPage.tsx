@@ -3,6 +3,7 @@ import Pagination from '@components/common/Pagination';
 import useGames from '@hooks/useGames';
 import { IGames } from '@models/games';
 import moment from 'moment';
+import useTranslation from 'next-translate/useTranslation';
 import { useState } from 'react';
 
 export interface GamesPageProps {
@@ -12,6 +13,7 @@ export interface GamesPageProps {
 const PAGE_SIZE = 5;
 
 const GamesPage = ({ games: serverGames }: GamesPageProps) => {
+   const { t } = useTranslation('games');
    const [score, setScore] = useState('');
 
    let {
@@ -44,16 +46,18 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
 
    return (
       <div className="container mx-auto flex h-to-fit flex-col items-center gap-4 p-4">
-         <h1>Current Average: {averageScore}</h1>
+         <h1>
+            {t('average')}: {averageScore}
+         </h1>
 
-         <h1>All previous Scores:</h1>
+         <h1>{t('allPreviousScores')}:</h1>
          <div className="rounded-xl border-2 border-main-3">
             <table className="w-96 divide-x divide-y">
                <thead>
                   <tr className="">
-                     <th className="px-4 py-2">Date</th>
-                     <th className="px-4 py-2">Score</th>
-                     <th className="px-4 py-2">Delete</th>
+                     <th className="px-4 py-2">{t('date')}</th>
+                     <th className="px-4 py-2">{t('score')}</th>
+                     <th className="px-4 py-2">{t('delete')}</th>
                   </tr>
                </thead>
                <tbody className="rounded-lg">
@@ -79,14 +83,14 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
          />
 
          <div className="mt-4 flex flex-col items-center gap-2 md:flex-row">
-            <h1>New Score: </h1>
+            <h1>{t('newScore')}: </h1>
             {isPosting ? (
-               <h2>Adding Score...</h2>
+               <h2>{t('addingScore')}</h2>
             ) : (
                <input
                   className="appearance-none rounded-lg px-4 py-2 shadow-md focus:outline-main-3"
                   type="number"
-                  placeholder="Add your score"
+                  placeholder={t('newScorePlaceholder')}
                   value={score}
                   onChange={handleScoreChange}
                   onKeyDown={handleKeyDown}

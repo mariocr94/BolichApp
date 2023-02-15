@@ -1,0 +1,14 @@
+{
+   "mainTitle": "Bienvenido a BolichApp!",
+   "average": "Promedio actual",
+   "pages": {
+      "home": "Principal",
+      "profile": "Perfil",
+      "games": "Juegos"
+   },
+   "login": {
+      "facebook": "Continuar con Facebook",
+      "google": "Continuar con Google",
+      "logout": "Salir"
+   }
+}

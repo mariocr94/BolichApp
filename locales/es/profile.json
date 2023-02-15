@@ -1,0 +1,13 @@
+{
+   "profile": "Perfil",
+   "description": "Actualiza la información de tu perfil aquí.",
+   "username": "Usuario",
+   "fullName": "Nombre completo",
+   "rightHanded": "Diestro",
+   "leftHanded": "Zurdo",
+   "oneHanded": "Una mano",
+   "twoHanded": "Dos manos",
+   "speed": "Velocidad",
+   "cancel": "Cancelar",
+   "save": "Guardar"
+}
