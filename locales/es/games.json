@@ -6,5 +6,6 @@
    "delete": "Eliminar",
    "newScore": "Nueva Puntuación",
    "newScorePlaceholder": "Agrega tu puntuación",
-   "addingScore": "Agregando puntuación..."
+   "addingScore": "Agregando puntuación...",
+   "addNewScore": "Agrega tu primera puntuación!"
 }

@@ -6,5 +6,6 @@
    "delete": "Delete",
    "newScore": "New Score",
    "newScorePlaceholder": "Add your score",
-   "addingScore": "Adding score..."
+   "addingScore": "Adding score...",
+   "addNewScore": "Add your first score!"
 }

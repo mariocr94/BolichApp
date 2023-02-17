@@ -8,7 +8,7 @@ const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
    const [games, setGames] = useState(serverGames);
    const [isPosting, setIsPosting] = useState(false);
    const [isDeleting, setIsDeleting] = useState(false);
-   const [numberOfRecords, setNumberOfRecords] = useState(serverGames.length);
+   const [numberOfRecords, setNumberOfRecords] = useState(games !== null ? games.length : 0);
    const [startIndex, setStartIndex] = useState(0);
    const [endIndex, setEndIndex] = useState(PAGE_SIZE - 1);
    const supabaseClient = useSupabaseClient();
@@ -44,12 +44,12 @@ const useGames = (serverGames: IGames[], PAGE_SIZE: number = 5) => {
 
    const refetchGames = async () => {
       const { data: games } = await supabaseClient.from(TABLES.GAMES).select('*');
+      console.log(games);
       setGames(games);
       setNumberOfRecords(games.length);
    };
-
    const averageScore =
-      games.length > 0
+      games && games.length > 0
          ? (
               games.reduce((sum, game) => {
                  return (sum += game.score);

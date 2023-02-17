@@ -49,38 +49,43 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
          <h1>
             {t('average')}: {averageScore}
          </h1>
-
-         <h1>{t('allPreviousScores')}:</h1>
-         <div className="rounded-xl border-2 border-main-3">
-            <table className="w-96 divide-x divide-y">
-               <thead>
-                  <tr className="">
-                     <th className="px-4 py-2">{t('date')}</th>
-                     <th className="px-4 py-2">{t('score')}</th>
-                     <th className="px-4 py-2">{t('delete')}</th>
-                  </tr>
-               </thead>
-               <tbody className="rounded-lg">
-                  {games.slice(startIndex, endIndex + 1).map((game) => {
-                     return (
-                        <tr key={game.id}>
-                           <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
-                           <td>{game.score}</td>
-                           <td className="text-red-500">
-                              <button onClick={() => deleteGame(game.id)}>X</button>
-                           </td>
+         {games !== null ? (
+            <div className="flex flex-col items-center justify-center">
+               <h1>{t('allPreviousScores')}:</h1>
+               <div className="rounded-xl border-2 border-main-3">
+                  <table className="w-96 divide-x divide-y">
+                     <thead>
+                        <tr className="">
+                           <th className="px-4 py-2">{t('date')}</th>
+                           <th className="px-4 py-2">{t('score')}</th>
+                           <th className="px-4 py-2">{t('delete')}</th>
                         </tr>
-                     );
-                  })}
-               </tbody>
-            </table>
-         </div>
-         <Pagination
-            numberOfRecords={numberOfRecords}
-            setStartIndex={setStartIndex}
-            setEndIndex={setEndIndex}
-            pageSize={PAGE_SIZE}
-         />
+                     </thead>
+                     <tbody className="rounded-lg">
+                        {games.slice(startIndex, endIndex + 1).map((game) => {
+                           return (
+                              <tr key={game.id}>
+                                 <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
+                                 <td>{game.score}</td>
+                                 <td className="text-red-500">
+                                    <button onClick={() => deleteGame(game.id)}>X</button>
+                                 </td>
+                              </tr>
+                           );
+                        })}
+                     </tbody>
+                  </table>
+               </div>
+               <Pagination
+                  numberOfRecords={numberOfRecords}
+                  setStartIndex={setStartIndex}
+                  setEndIndex={setEndIndex}
+                  pageSize={PAGE_SIZE}
+               />
+            </div>
+         ) : (
+            <h1>{t('addNewScore')}</h1>
+         )}
 
          <div className="mt-4 flex flex-col items-center gap-2 md:flex-row">
             <h1>{t('newScore')}: </h1>
