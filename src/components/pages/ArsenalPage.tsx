@@ -70,7 +70,9 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
                         <tr className="">
                            <th className="px-4 py-2">{t('brand')}</th>
                            <th className="px-4 py-2">{t('name')}</th>
-                           <th className="hidden px-4 py-2 md:inline">{t('coverstock')}</th>
+                           <th className="hidden px-4 py-2 md:flex md:items-center md:justify-center">
+                              {t('coverstock')}
+                           </th>
                            <th className="px-4 py-2">{t('delete')}</th>
                         </tr>
                      </thead>
@@ -83,7 +85,9 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
                               >
                                  <td>{userBall.brandname}</td>
                                  <td>{userBall.ballname}</td>
-                                 <td className="hidden md:inline">{userBall.covername}</td>
+                                 <td className="hidden md:flex md:items-center md:justify-center">
+                                    {userBall.covername}
+                                 </td>
                                  <td className="text-red-500">
                                     {/* <button>X</button> */}
                                     <button onClick={() => deleteBall(userBall.id)}>X</button>
