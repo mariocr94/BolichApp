@@ -46,7 +46,10 @@ const useArsenal = (serverUserBalls: IUserBall[], PAGE_SIZE: number = 5) => {
    };
 
    const refetchBalls = async () => {
-      const { data: userBalls } = await supabaseClient.from(VIEWS.USER_BALLS).select('*');
+      const { data: userBalls } = await supabaseClient
+         .from(VIEWS.USER_BALLS)
+         .select('*')
+         .eq('user_id', user.id);
       setUserBalls(userBalls);
       setNumberOfRecords(userBalls.length);
    };
