@@ -48,7 +48,7 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                <Menu>
                   <MenuHandler>
                      <Button className="rounded-full bg-transparent p-2 shadow-none hover:shadow-none">
-                        <BsList className="h-8 w-8 cursor-pointer rounded-full fill-main-1" />
+                        <BsList className="h-8 w-8 cursor-pointer rounded-full fill-main-4" />
                      </Button>
                   </MenuHandler>
                   <MenuList className="w-32 px-2 py-0">
@@ -79,7 +79,7 @@ const Header = ({ supabaseClient }: HeaderProps) => {
 
    return (
       <header className="sticky top-0 left-0 right-0">
-         <nav className="flex items-center justify-between border-b bg-gradient-to-r from-main-1 to-main-4 p-3">
+         <nav className="flex items-center justify-between border-b bg-main-1 p-3">
             {renderUserOptions()}
          </nav>
       </header>
