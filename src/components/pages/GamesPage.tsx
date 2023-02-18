@@ -53,7 +53,7 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
             <div className="flex flex-col items-center justify-center">
                <h1>{t('allPreviousScores')}:</h1>
                <div className="rounded-xl border-2 border-main-3">
-                  <table className="w-96 divide-x divide-y">
+                  <table className="divide-x divide-y md:w-96">
                      <thead>
                         <tr className="">
                            <th className="px-4 py-2">{t('date')}</th>
@@ -64,7 +64,10 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
                      <tbody className="rounded-lg">
                         {games.slice(startIndex, endIndex + 1).map((game) => {
                            return (
-                              <tr key={game.id} className="border-t-2 border-main-1">
+                              <tr
+                                 key={game.id}
+                                 className="border-t-2 border-main-1 text-xs sm:text-base"
+                              >
                                  <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
                                  <td>{game.score}</td>
                                  <td className="text-red-500">

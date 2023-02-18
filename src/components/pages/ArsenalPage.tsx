@@ -1,5 +1,5 @@
+import Card from '@components/common/cards/Card';
 import ComboBox from '@components/common/ComboBox';
-import Pagination from '@components/common/Pagination';
 import { RefreshIcon } from '@heroicons/react/solid';
 import useArsenal from '@hooks/useArsenal';
 import useBalls from '@hooks/useBalls';
@@ -43,8 +43,8 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
    };
 
    return (
-      <div className="container mx-auto flex h-to-fit flex-col items-center gap-4 p-4">
-         <div className="mt-4 flex flex-col items-center gap-2 md:flex-row md:items-center md:justify-center">
+      <div className="container flex h-to-fit flex-col items-center gap-4 p-4">
+         <div className="mt-4 mb-10 flex flex-col items-center gap-2 md:flex-row md:items-center md:justify-center">
             <ComboBox
                data={balls}
                query={query}
@@ -69,48 +69,17 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
             </Button>
          </div>
          {userBalls !== null ? (
-            <div className="flex flex-col items-center justify-center gap-4">
-               <h1>{t('arsenal')}:</h1>
-               <div className="rounded-xl border-2 border-main-3">
-                  <table className="divide-x divide-y md:min-w-[768px]">
-                     <thead>
-                        <tr className="">
-                           <th className="px-4 py-2">{t('brand')}</th>
-                           <th className="px-4 py-2">{t('name')}</th>
-                           <th className="hidden px-4 py-2 md:flex md:items-center md:justify-center">
-                              {t('coverstock')}
-                           </th>
-                           <th className="px-4 py-2">{t('delete')}</th>
-                        </tr>
-                     </thead>
-                     <tbody className="rounded-lg">
-                        {userBalls.slice(startIndex, endIndex + 1).map((userBall) => {
-                           return (
-                              <tr
-                                 key={`${userBall.id}:${userBall.ballname}`}
-                                 className="border-t-2 border-main-1"
-                              >
-                                 <td>{userBall.brandname}</td>
-                                 <td>{userBall.ballname}</td>
-                                 <td className="hidden md:flex md:items-center md:justify-center">
-                                    {userBall.covername}
-                                 </td>
-                                 <td className="text-red-500">
-                                    {/* <button>X</button> */}
-                                    <button onClick={() => deleteBall(userBall.id)}>X</button>
-                                 </td>
-                              </tr>
-                           );
-                        })}
-                     </tbody>
-                  </table>
-               </div>
-               <Pagination
-                  numberOfRecords={numberOfRecords}
-                  setStartIndex={setStartIndex}
-                  setEndIndex={setEndIndex}
-                  pageSize={PAGE_SIZE}
-               />
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-10 md:justify-start">
+               {userBalls.map((ball) => (
+                  <Card
+                     key={ball.id}
+                     id={ball.id}
+                     title={ball.ballname}
+                     description={ball.covername}
+                     leftFoot={ball.brandname}
+                     onDelete={deleteBall}
+                  />
+               ))}
             </div>
          ) : (
             <h1>{t('addNewBall')}</h1>

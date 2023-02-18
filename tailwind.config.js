@@ -13,6 +13,10 @@ module.exports = withMT({
          colors: {
             'blue-fb': '#1877F2',
             'gray-google': '#76797E',
+            'mainx-1': '#443737',
+            'mainx-2': '#272121',
+            'mainx-3': '#C147E9',
+            'mainx-4': '#FF4D00',
             'main-1': '#2D033B',
             'main-2': '#810CA8',
             'main-3': '#C147E9',

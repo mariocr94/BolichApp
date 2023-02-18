@@ -29,7 +29,6 @@ const ComboBox = ({
    }, [selected]);
 
    useEffect(() => {
-      console.log(resetQuery);
       if (resetQuery) setSelected({});
    }, [resetQuery]);
 

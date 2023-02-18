@@ -17,7 +17,9 @@ const Layout = ({ children, supabaseClient }: Props) => (
          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header supabaseClient={supabaseClient} />
-      <main className="container mx-auto h-to-fit p-4">{children}</main>
+      <main className="no-scrollbar m-0 flex h-to-fit justify-center overflow-scroll px-4 pt-4">
+         {children}
+      </main>
       <Footer />
    </div>
 );
