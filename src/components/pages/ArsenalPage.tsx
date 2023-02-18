@@ -61,7 +61,7 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
             >
                {isPosting ? (
                   <div className="flex items-center justify-center">
-                     <RefreshIcon className="h-4 w-4 fill-white" />
+                     <RefreshIcon className="h-4 w-4 animate-reverse-spin fill-white" />
                   </div>
                ) : (
                   t('addBall')

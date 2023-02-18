@@ -26,6 +26,16 @@ module.exports = withMT({
             'to-fit': 'calc(100vh - 121px)',
          },
       },
+      animation: {
+         'reverse-spin': 'reverse-spin 1s linear infinite',
+      },
+      keyframes: {
+         'reverse-spin': {
+            from: {
+               transform: 'rotate(360deg)',
+            },
+         },
+      },
    },
    plugins: [],
 });
