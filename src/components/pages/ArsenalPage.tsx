@@ -17,6 +17,7 @@ const PAGE_SIZE = 10;
 
 const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
    const [ball, setBall] = useState<IBalls | null>(null);
+   const [resetQuery, setResetQuery] = useState(0);
    const { t } = useTranslation('arsenal');
    const {
       userBalls,
@@ -36,20 +37,26 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
       setBall(ball);
    };
 
+   const handleAddBallButton = (ballId: number) => {
+      addBall(ballId);
+      setResetQuery((resetQuery) => resetQuery + 1);
+   };
+
    return (
       <div className="container mx-auto flex h-to-fit flex-col items-center gap-4 p-4">
-         <div className="mt-4 flex flex-col items-center gap-2 md:flex-row">
+         <div className="mt-4 flex flex-col items-center gap-2 md:flex-row md:items-center md:justify-center">
             <ComboBox
-               balls={balls}
+               data={balls}
                query={query}
                setQuery={setQuery}
                placeholder={t('addPlaceholder') as string}
                useValue={useComboBoxValue}
+               resetQuery={resetQuery}
             />
             <Button
                className="w-40 bg-main-3"
                onClick={() => {
-                  addBall(ball.id);
+                  handleAddBallButton(ball.id);
                }}
             >
                {isPosting ? (
