@@ -4,11 +4,13 @@
    "pages": {
       "home": "Principal",
       "profile": "Perfil",
-      "games": "Juegos"
+      "games": "Juegos",
+      "arsenal": "Arsenal"
    },
    "login": {
       "facebook": "Continuar con Facebook",
       "google": "Continuar con Google",
       "logout": "Salir"
-   }
+   },
+   "notFound": "No encontrado."
 }

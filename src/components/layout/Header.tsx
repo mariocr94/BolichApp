@@ -6,6 +6,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsClipboardData, BsHouseDoorFill, BsList, BsPersonFill, BsPower } from 'react-icons/bs';
+import { FaBowlingBall } from 'react-icons/fa';
 import NavItem from './NavItem';
 
 interface HeaderProps {
@@ -39,6 +40,9 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                   </NavItem>
                   <NavItem link={PAGES.GAMES} label={t('pages.games')} route={route}>
                      <BsClipboardData className="h-8 w-8 md:h-6 md:w-6" />
+                  </NavItem>
+                  <NavItem link={PAGES.ARSENAL} label={t('pages.arsenal')} route={route}>
+                     <FaBowlingBall className="h-8 w-8 md:h-6 md:w-6" />
                   </NavItem>
                </ul>
                <Menu>

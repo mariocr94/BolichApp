@@ -64,7 +64,7 @@ const GamesPage = ({ games: serverGames }: GamesPageProps) => {
                      <tbody className="rounded-lg">
                         {games.slice(startIndex, endIndex + 1).map((game) => {
                            return (
-                              <tr key={game.id}>
+                              <tr key={game.id} className="border-t-2 border-main-1">
                                  <td>{moment(game.inserted_at).format(MONTH_DAY_YEAR)}</td>
                                  <td>{game.score}</td>
                                  <td className="text-red-500">

@@ -5,5 +5,6 @@ module.exports = {
       '*': ['common'],
       '/profile': ['profile'],
       '/games': ['games'],
+      '/arsenal': ['arsenal'],
    },
 };
