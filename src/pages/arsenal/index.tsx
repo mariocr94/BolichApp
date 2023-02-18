@@ -21,7 +21,10 @@ export async function getServerSideProps(ctx) {
          },
       };
 
-   const { data: arsenal } = await supabase.from(VIEWS.USER_BALLS).select('*');
+   const { data: arsenal } = await supabase
+      .from(VIEWS.USER_BALLS)
+      .select('*')
+      .eq('user_id', session.user.id);
 
    return { props: { session, arsenal } };
 }
