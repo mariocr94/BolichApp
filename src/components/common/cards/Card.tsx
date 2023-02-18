@@ -21,7 +21,7 @@ export interface CardProps {
 const Card = ({ id, title, description, leftFoot, onDelete, img }: CardProps) => {
    return (
       <CardContainer className="w-32 md:w-40">
-         <CardHeader color="purple" className="relative h-16 shadow-md md:h-20">
+         <CardHeader color="red" className="relative h-16 shadow-md md:h-20">
             <Image src="/images/bowling.jpeg" fill alt="bowling" className="rounded-md shadow-lg" />
          </CardHeader>
          <CardBody className="flex h-20 flex-col justify-between p-2 text-center md:h-[90px]">

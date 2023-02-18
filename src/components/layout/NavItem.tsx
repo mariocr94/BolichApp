@@ -9,13 +9,13 @@ export interface NavItemProps {
 
 const NavItem = ({ link, label, children, route }: NavItemProps) => {
    return (
-      <li className={`mx-2 hover:text-main-4 ${route == link && 'text-main-4'}`}>
+      <li className={`mx-2 hover:text-main-1 ${route == link && 'text-main-1'}`}>
          <Link href={link}>
             <div className="group md:flex md:flex-col md:items-center md:justify-center ">
                {children}
                <h2
-                  className={`hidden text-main-3 group-hover:text-main-4 md:inline ${
-                     route == link && 'text-main-4'
+                  className={`hidden text-main-3 group-hover:text-main-1 md:inline ${
+                     route == link && '!text-main-1'
                   }`}
                >
                   {label}

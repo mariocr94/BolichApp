@@ -16,10 +16,8 @@ const PageButtons = ({ totalPages, currentPage, setPage }: PageButtonsProps) => 
                return (
                   <Button
                      key={page}
-                     className={`smallButton m-2 font-normal text-main-3 ${
-                        currentPage == page
-                           ? 'bg-main-4 text-main-2'
-                           : 'bg-transparent shadow-gray-300'
+                     className={`smallButton m-2 font-normal text-main-2 ${
+                        currentPage == page ? 'bg-main-2 text-main-1 hover:bg-main-2' : 'bg-main-3'
                      }`}
                      onClick={() => {
                         setPage(page);

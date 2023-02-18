@@ -54,7 +54,7 @@ const ArsenalPage = ({ arsenal }: ArsenalPageProps) => {
                resetQuery={resetQuery}
             />
             <Button
-               className="w-40 bg-main-3"
+               className="w-40 bg-main-1 shadow-xl"
                onClick={() => {
                   handleAddBallButton(ball.id);
                }}

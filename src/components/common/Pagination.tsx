@@ -47,7 +47,7 @@ const Pagination = ({
             disabled={!previousEnabled}
          >
             <ChevronLeftIcon
-               className={`h-5 w-5 ${previousEnabled ? 'fill-main-3' : 'fill-gray-400'}`}
+               className={`h-5 w-5 ${previousEnabled ? 'fill-main-2' : 'fill-gray-400'}`}
             />
          </Button>
          <PageButtons totalPages={totalPages} currentPage={currentPage} setPage={setPage} />
@@ -60,7 +60,7 @@ const Pagination = ({
             disabled={!nextEnabled}
          >
             <ChevronRightIcon
-               className={`h-5 w-5 ${nextEnabled ? 'fill-main-3' : 'fill-gray-400'}`}
+               className={`h-5 w-5 ${nextEnabled ? 'fill-main-2' : 'fill-gray-400'}`}
             />
          </Button>
       </div>

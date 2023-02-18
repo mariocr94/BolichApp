@@ -48,18 +48,24 @@ const Header = ({ supabaseClient }: HeaderProps) => {
                <Menu>
                   <MenuHandler>
                      <Button className="rounded-full bg-transparent p-2 shadow-none hover:shadow-none">
-                        <BsList className="h-8 w-8 cursor-pointer rounded-full fill-main-1" />
+                        <BsList className="h-8 w-8 cursor-pointer rounded-full fill-main-4" />
                      </Button>
                   </MenuHandler>
                   <MenuList className="w-32 px-2 py-0">
-                     <MenuItem onClick={handleProfileClick} className="hover:bg-main-4">
+                     <MenuItem
+                        onClick={handleProfileClick}
+                        className="font-bold hover:bg-main-3 hover:text-white"
+                     >
                         <div className="flex items-center gap-2 border-b py-2">
-                           <BsPersonFill className="h-6 w-6 fill-main-2" /> {t('pages.profile')}
+                           <BsPersonFill className="h-6 w-6 fill-main-1" /> {t('pages.profile')}
                         </div>
                      </MenuItem>
-                     <MenuItem onClick={handleLogoutClick} className="hover:bg-main-4">
+                     <MenuItem
+                        onClick={handleLogoutClick}
+                        className="font-bold hover:bg-main-3 hover:text-white"
+                     >
                         <div className="flex items-center gap-2 py-2">
-                           <BsPower className="h-6 w-6 fill-main-2" /> {t('login.logout')}
+                           <BsPower className="h-6 w-6 fill-main-1" /> {t('login.logout')}
                         </div>
                      </MenuItem>
                   </MenuList>
@@ -79,7 +85,7 @@ const Header = ({ supabaseClient }: HeaderProps) => {
 
    return (
       <header className="sticky top-0 left-0 right-0">
-         <nav className="flex items-center justify-between border-b bg-gradient-to-r from-main-1 to-main-4 p-3">
+         <nav className="flex items-center justify-between border-b bg-main-2 p-3">
             {renderUserOptions()}
          </nav>
       </header>

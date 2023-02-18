@@ -16,8 +16,8 @@ const theme: {
    input: {
       defaultProps: {
          variant: 'static',
-         className: 'py-1 px-2 text-lg w-50',
-         color: 'purple',
+         className: 'py-1 px-2 text-lg w-50 text-main-2 number-main-2',
+         color: 'red',
          labelProps: {
             className: 'font-bold',
          },
@@ -30,6 +30,9 @@ const theme: {
             icon: {
                className: 'w-auto h-auto pr-2 justify-baseline',
             },
+            label: {
+               className: 'text-main-2 text-base',
+            },
          },
       },
    },
@@ -41,12 +44,15 @@ const theme: {
    },
    radio: {
       defaultProps: {
-         className: '',
+         className: 'text-main-2',
       },
       styles: {
          base: {
             container: {
                className: 'h-6',
+            },
+            label: {
+               className: 'text-main-2',
             },
          },
          colors: {},

@@ -25,7 +25,7 @@ const Footer = () => {
    };
 
    return (
-      <div className="flex h-12 justify-end gap-2 bg-gradient-to-r from-main-4 to-main-1 p-2 text-xs">
+      <div className="flex h-12 justify-end gap-2 bg-main-2 p-2 text-xs">
          <div onClick={handleEnglish} className="cursor-pointer">
             <h2 className="text-main-4">English</h2>
          </div>

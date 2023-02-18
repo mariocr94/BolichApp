@@ -27,7 +27,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
       <div className="container mx-auto flex h-to-fit flex-col items-start gap-4 p-4">
          <div className="mb-4 w-full border-b border-b-main-1 pb-2">
             <h1>{t('profile')}</h1>
-            <h3>{t('description')}</h3>
+            <h3 className="text-main-2">{t('description')}</h3>
          </div>
          <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
@@ -50,7 +50,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                         name="hand"
                         label={t('rightHanded')}
                         value="Right handed"
-                        color="purple"
+                        color="red"
                         {...register('right_handed')}
                      />
                      <Radio
@@ -58,7 +58,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                         name="hand"
                         label={t('leftHanded')}
                         value="Left handed"
-                        color="purple"
+                        color="red"
                         {...register('right_handed')}
                      />
                   </div>
@@ -68,7 +68,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                         name="style"
                         label={t('oneHanded')}
                         value="One handed"
-                        color="purple"
+                        color="red"
                         {...register('one_handed')}
                      />
                      <Radio
@@ -76,7 +76,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                         name="style"
                         label={t('twoHanded')}
                         value="Two handed"
-                        color="purple"
+                        color="red"
                         {...register('one_handed')}
                      />
                   </div>
@@ -84,7 +84,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                <div className="space-y-6">
                   <Input
                      id="kmh"
-                     className="w-50 border-0"
+                     className="w-50 border-0 text-main-2"
                      type="float"
                      label={t('speed')}
                      containerProps={{ className: 'w-24' }}
@@ -96,7 +96,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                         name="speed_km"
                         label="KM/H"
                         value="kph"
-                        color="purple"
+                        color="red"
                         {...register('isKmh')}
                      />
                      <Radio
@@ -104,13 +104,13 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
                         name="speed_km"
                         label="M/H"
                         value="mph"
-                        color="purple"
+                        color="red"
                         {...register('isKmh')}
                      />
                   </div>
                   <Input
                      id="rpm"
-                     className="w-50 border-0"
+                     className="w-50 border-0 text-main-2"
                      type="numeric"
                      label="RPM"
                      containerProps={{ className: 'w-24' }}
@@ -120,7 +120,7 @@ const ProfilePage = ({ profile }: ProfilePageProps) => {
             </div>
             <div className="mt-4 flex gap-2">
                <Button className="w-28 bg-gray-400 !py-1 text-center">{t('cancel')}</Button>
-               <Button type="submit" className="w-28 bg-main-3" disabled={isUpdating}>
+               <Button type="submit" className="w-28 bg-main-1" disabled={isUpdating}>
                   {isUpdating ? (
                      <div className="flex items-center justify-center">
                         <RefreshIcon className="h-4 w-4 fill-white" />
