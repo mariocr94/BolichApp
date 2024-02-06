@@ -2,9 +2,9 @@
    "editor.formatOnSave": true,
    "editor.defaultFormatter": "esbenp.prettier-vscode",
    "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.sortMembers": true,
-      "source.organizeImports": true
+      "source.fixAll": "explicit",
+      "source.sortMembers": "explicit",
+      "source.organizeImports": "explicit"
    },
    "prettier.configPath": "prettier.config.js"
 }
